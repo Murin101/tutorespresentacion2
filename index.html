@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorías UCC - Nutrición</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #f4f6f8;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  background: #f6f6f6;
+  color: white;
+}
+
+header img {
+  height: 50px;
+}
+
+header h1 {
+  font-size: 1.3rem;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #1FA34A, #0c6b2f);
+  color: white;
+  animation: fadeIn 1s ease;
+}
+
+.hero h2 {
+  font-size: 2rem;
+}
+
+/* BURBUJAS */
+.burbujas {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 50px 20px;
+  flex-wrap: wrap;
+}
+
+.burbuja {
+  background: white;
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: 0.4s;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.burbuja.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.burbuja:hover {
+  transform: scale(1.1);
+  background: #1FA34A;
+  color: white;
+}
+
+/* MODAL */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.cerrar {
+  margin-top: 20px;
+  padding: 10px 18px;
+  border: none;
+  background: #1FA34A;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* TUTORES */
+.tutores {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.tutores h3 {
+  margin-bottom: 20px;
+}
+
+.lista-tutores {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tutor {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  width: 200px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.tutor.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tutor:hover {
+  background: #1FA34A;
+  color: white;
+}
+
+.info-tutor {
+  margin-top: 25px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  white-space: pre-line;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* FOOTER */
+.contacto {
+  background: #0c6b2f;
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .burbuja {
+    width: 120px;
+    height: 120px;
+    font-size: 0.8rem;
+  }
+
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="logo.png" alt="Logo UCC">
+
+</header>
+
+<section class="hero">
+  <h2>Programa de Tutorias</h2>
+</section>
+
+<section class="burbujas">
+  <div class="burbuja" onclick="abrirModal('que')">¿Qué hacemos?</div>
+  <div class="burbuja" onclick="abrirModal('como')">¿Cómo?</div>
+  <div class="burbuja" onclick="abrirModal('porque')">¿Por qué?</div>
+</section>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <p id="textoModal"></p>
+    <button class="cerrar" onclick="cerrarModal()">Cerrar</button>
+  </div>
+</div>
+
+<section class="tutores">
+  <h3>Contactate con alguno de nosotros</h3>
+
+    <div class="lista-tutores">
+        <div class="tutor" onclick="mostrarTutor('t1')">Matias</div>
+        <div class="tutor" onclick="mostrarTutor('t2')">Josefina</div>
+        <div class="tutor" onclick="mostrarTutor('t3')">Alejandra</div>
+        <div class="tutor" onclick="mostrarTutor('t4')">Julieta</div>
+        <div class="tutor" onclick="mostrarTutor('t5')">Manuel</div>
+        <div class="tutor" onclick="mostrarTutor('t6')">Simon</div>
+        <div class="tutor" onclick="mostrarTutor('t7')">Mirco</div>
+        <div class="tutor" onclick="mostrarTutor('t8')">Lara</div>
+        <div class="tutor" onclick="mostrarTutor('t9')">Barbara</div>
+    </div>
+
+  <div class="info-tutor" id="infoTutor">
+    Seleccioná un tutor para ver sus datos
+  </div>
+
+<script>
+// MODAL
+const textos = {
+  que: "Somos estudiantes avanzados de Nutrición que acompañamos a quienes recién empiezan la carrera.\n\nSabemos lo que es estar en primer año: no entender cómo estudiar, perderse con las materias o sentirse medio solo en el proceso.\n\nPor eso estamos para dar una mano, compartir lo que fuimos aprendiendo y hacer que ese primer paso en la facultad sea más llevadero.",
+
+  como: "Lo hacemos desde un lugar cercano, de estudiante a estudiante.\n\nEn las tutorías compartimos formas de estudiar que a nosotros nos sirvieron, explicamos contenidos desde otra mirada y ayudamos a organizarnos mejor con la cursada.\n\nTambién generamos espacios para preguntar sin miedo, sacarse dudas y entender mejor cómo funciona la facultad en el día a día.",
+
+  porque: "Porque todos pasamos por ese primer año que a veces es difícil y lleno de cambios.\n\nDesde la formación como tutores aprendimos la importancia de acompañar, escuchar y guiar sin juzgar, entendiendo que cada estudiante vive el proceso de manera distinta.\n\nLa idea es que nadie tenga que atravesar solo ese momento y que puedan sentirse más seguros y confiados en su recorrido por la carrera."
+};
+
+function abrirModal(tipo) {
+  document.getElementById("textoModal").innerText = textos[tipo];
+  document.getElementById("modal").style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// CERRAR AL HACER CLICK AFUERA
+window.onclick = function(event) {
+  const modal = document.getElementById("modal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+}
+
+function mostrarTutor(nombre) {
+  const tutores = {
+    t1: "Matias Oviedo\n📚 2° año\n📧 2503463@ucc.edu.ar",
+    t2: "Josefina Zabala\n📚 2° año\n📧 2502424@ucc.edu.ar",
+    t3: "Alejandra Valenzuela\n📚 2° año\n📧 2528387@ucc.edu.ar",
+    t4: "Julieta Martin\n📚 3° año\n📧 2313350@ucc.edu.ar",
+    t5: "Manuel Plomer\n📚 4° año\n📧 2202462@ucc.edu.ar",
+    t6: "Simon Giletta\n📚 3° año\n📧 2315660@ucc.edu.ar",
+    t7: "Mirco Rolle\n📚 3° año\n📧 2314135@ucc.edu.ar",
+    t8: "Lara Gelosi\n📚 3° año\n📧 2318714@ucc.edu.ar",
+    t9: "Barbara Lillieskold\n📚 3° año\n📧 2309390@ucc.edu.ar"
+  };
+
+  document.getElementById("infoTutor").innerText = tutores[nombre];
+}
+
+// ANIMACIONES AL SCROLL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+document.querySelectorAll(".burbuja, .tutor").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
